@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import Top from "./views/Top.vue";
 import Login from "./views/Login.vue";
 import Vuetify from "vuetify";
 
@@ -13,8 +13,8 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      name: "top",
+      component: Top
     },
     {
       path: "/login",
@@ -23,3 +23,4 @@ export default new Router({
     }
   ]
 });
+

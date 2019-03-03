@@ -20,46 +20,13 @@
           <v-btn color="primary" @click="login">login</v-btn>
         </v-flex>
 
-
       </v-layout>
     </v-container>
   </v-form>
 </template>
 
 <script>
-  import gql from 'graphql-tag';
-
-  const query = gql`
-    {
-      organization(login: "apollographql") {
-        repositories(first: 5) {
-          nodes {
-            id
-            name
-            url
-            viewerHasStarred
-            stargazers {
-              totalCount
-            }
-          }
-        }
-      }
-    }
-  `;
-
-  const LOGIN = gql`
-    mutation($email: String!, $password: String!) {
-      Login(
-        email: $email
-        password: $password
-      ) {
-        access_token
-        token_type
-        expires_in
-      }
-    }
-  `;
-
+  import { LOGIN } from "../graphql/mutation.js";
 
   export default {
     data: () => ({
@@ -73,12 +40,10 @@
       passRules: [
         v => !!v || 'id is required',
         v => v.length <= 10 || 'Name must be less than 10 characters'
-      ],
-      organization:  {}
+      ]
     }),
     methods: {
       login(e){       
-        let self = this; 
         // ミューテーション
         this.$apollo.mutate({
           // Query
@@ -89,15 +54,10 @@
             password: this.pass
           },
         }).then((data) => {
-          console.log(data);
-          // const token = localStorage.setItem('token');
-        })
-
+          const token = localStorage.setItem('vue_token', data.data.Login.access_token);
+          this.$router.push("/");
+        });
       }
     }
   }
 </script>
-
-<style>
-
-</style>
