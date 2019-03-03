@@ -1,5 +1,5 @@
 import Vue from "vue";
-import './plugins/vuetify'
+import './plugins/vuetify';
 import App from "./App.vue";
 import router from "./router";
 
@@ -14,8 +14,7 @@ Vue.config.productionTip = false;
 Vue.use(VueApollo);
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:8000/graphql',
-  credentials: 'include'
+  uri: 'http://localhost:8000/graphql/'
 });
 
 const authLink = setContext((_, { headers }) => {

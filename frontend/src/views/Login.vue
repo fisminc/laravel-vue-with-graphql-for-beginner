@@ -90,15 +90,10 @@
           },
         }).then((data) => {
           console.log(data);
+          // const token = localStorage.setItem('token');
         })
 
       }
-    },
-    apollo: {
-      organization: {
-        query: query,
-        loadingKey: 'loading'
-      },
     }
   }
 </script>
