@@ -2,19 +2,27 @@ import Vue from "vue";
 import Router from "vue-router";
 import Top from "./views/Top.vue";
 import Login from "./views/Login.vue";
-import Vuetify from "vuetify";
+import store from "./store/index";
 
 Vue.use(Router);
-Vue.use(Vuetify, {
-  iconfont: "mdi" // 'md' || 'mdi' || 'fa' || 'fa4'
-});
+
+const AuthGuard = (to, from, next) => {
+  if (!store.getters.logined) {
+    next({
+      path: "/login"
+    });
+  } else {
+    next();
+  }
+};
 
 const router = new Router({
   routes: [
     {
       path: "/",
       name: "top",
-      component: Top
+      component: Top,
+      beforeEnter: AuthGuard
     },
     {
       path: "/login",

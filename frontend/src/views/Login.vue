@@ -27,6 +27,7 @@
 
 <script>
   import { LOGIN } from "../graphql/mutation.js";
+  import store from "../store/index";
 
   export default {
     data: () => ({
@@ -55,6 +56,7 @@
           },
         }).then((data) => {
           const token = localStorage.setItem('vue_token', data.data.Login.access_token);
+          store.commit('logined');
           this.$router.push("/");
         });
       }

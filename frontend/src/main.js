@@ -3,24 +3,29 @@ import './plugins/vuetify';
 import App from "./App.vue";
 import router from "./router";
 
-import { setContext } from 'apollo-link-context';
+// apollo本体
 import { ApolloClient } from 'apollo-client';
+// ApolloClientへのオプション
+import { setContext } from 'apollo-link-context';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+// vueとの紐付け
 import VueApollo from 'vue-apollo';
+import Vuetify from "vuetify";
 
 Vue.config.productionTip = false;
 
 Vue.use(VueApollo);
+Vue.use(Vuetify, {
+  iconfont: "mdi" // 'md' || 'mdi' || 'fa' || 'fa4'
+});
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:8000/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
   const token = localStorage.getItem('vue_token');
-  // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
@@ -29,7 +34,6 @@ const authLink = setContext((_, { headers }) => {
   }
 });
 
-// Create the apollo client
 const apolloClient = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
