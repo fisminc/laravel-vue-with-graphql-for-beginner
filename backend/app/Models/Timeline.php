@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Timeline
@@ -28,6 +29,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Timeline extends Model
 {
+
+    use SoftDeletes;
+
     protected $guarded = [];
 
     public function tweet()
