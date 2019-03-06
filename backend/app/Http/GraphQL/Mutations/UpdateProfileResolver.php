@@ -33,6 +33,16 @@ class UpdateProfileResolver
     {
         $account->name = $args['name'] ?? $account->name;
 
+        if ($args['avatar']) {
+            $exploded = explode(';base64,', $args['image']);
+            $imageType = explode('image/', $exploded[0])[1];
+            $imageName = str_random() . ".{$imageType}";
+
+            \Storage::put('public/images/' . $imageName, base64_decode($exploded[1]));
+
+            $account->avatar = $imageName;
+        }
+
         $account->save();
 
         return $account;
