@@ -29,8 +29,6 @@ const authLink = setContext((_, { headers }) => {
   }
 });
 
-// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvZ3JhcGhxbCIsImlhdCI6MTU1MTU5MzYyNywiZXhwIjoxNTUxNTk3MjI3LCJuYmYiOjE1NTE1OTM2MjcsImp0aSI6ImV6UThaT1dDdk1mZXE0NVUiLCJzdWIiOjEsInBydiI6ImM4ZWUxZmM4OWU3NzVlYzRjNzM4NjY3ZTViZTE3YTU5MGI2ZDQwZmMifQ.YNMXFcRMfWQZvJvfWzAQFlrkm9kGmXmTgTJFz6a8diU
-
 // Create the apollo client
 const apolloClient = new ApolloClient({
   link: authLink.concat(httpLink),
