@@ -13,7 +13,6 @@ export const LOGIN = gql`
   }
 `;
 
-// ツイート
 export const CREATE_TWEET = gql`
   mutation($tweet: String!) {
     CreateTweet(content: $tweet) {
@@ -21,5 +20,38 @@ export const CREATE_TWEET = gql`
       content
       tweeted_at
     }
+  }
+`;
+
+export const CREATE_ACCOUNT = gql`
+  mutation(
+    $name: String!,
+    $twitter_id: String!,
+    $email: String!,
+    $password: String!,
+    $password_confirmation: String!
+  ) {
+    CreateAccount(
+      name: $name
+      twitter_id: $twitter_id
+      email: $email
+      password: $password
+      password_confirmation: $password_confirmation
+    ) {
+      account {
+        twitter_id
+      }
+      token {
+        access_token
+        token_type
+        expires_in
+      }
+    }
+  }
+`;
+
+export const MARK_FAVORITE = gql`
+  mutation($tweet_id: Int!) {
+    MarkFavorite(tweet_id: $tweet_id)
   }
 `;

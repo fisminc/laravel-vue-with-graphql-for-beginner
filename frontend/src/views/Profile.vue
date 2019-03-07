@@ -17,8 +17,25 @@
             label="password"
             required
           ></v-text-field>
+          <v-text-field
+            v-model="pass"
+            :rules="passRules"
+            :counter="10"
+            label="password"
+            required
+          ></v-text-field>
+          <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
+            <img :src="imageUrl" height="150" v-if="imageUrl"/>
+            <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
+            <input
+              type="file"
+              style="display: none"
+              ref="image"
+              accept="image/*"
+              @change="onFilePicked"
+            >
+          </v-flex>
           <v-btn color="primary" @click="login">login</v-btn>
-          <router-link to="/signup"><v-btn　flat>signup</v-btn></router-link>
         </v-flex>
 
       </v-layout>
@@ -33,16 +50,19 @@
   export default {
     data: () => ({
       valid: false,
-      email: "",
+      email: '',
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+/.test(v) || "E-mail must be valid"
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid'
       ],
-      pass: "",
+      pass: '',
       passRules: [
-        v => !!v || "id is required",
-        v => v.length <= 6 || "Name must be less than 6 characters"
-      ]
+        v => !!v || 'id is required',
+        v => v.length <= 10 || 'Name must be less than 10 characters'
+      ],
+      imageName: '',
+      imageUrl: '',
+      imageFile: ''
     }),
     methods: {
       login(e){       

@@ -3,10 +3,19 @@
     <v-container>
       <v-layout row wrap>
         
-      <v-flex xs12 mb-2>
+      <v-flex mb-2>
         <v-sheet class="pa-4" elevation=6>
+          <router-link to="/profile">
+            <v-avatar
+              color="grey lighten-4"
+            >
+              <img src="https://avatars1.githubusercontent.com/u/1452819?s=460&v=4" />
+            </v-avatar>
+            profile
+          </router-link>
           <v-text-field
             v-model="tweet"
+            :rules="tweetRules"
             label="tweet"
             required
           ></v-text-field>
@@ -15,25 +24,7 @@
       </v-flex>
       <v-flex xs12>
         <v-sheet class="pa-4" elevation=6>
-          tweet
-          <v-list two-line>
-              <template v-for="(timeline, index) in timelines">
-                <v-list-tile
-                  :key="index"
-                  avatar
-                  @click=""
-                >
-                  <v-list-tile-avatar>
-                    <img src="https://avatars1.githubusercontent.com/u/1452819?s=460&v=4" />
-                  </v-list-tile-avatar>
-
-                  <v-list-tile-content>
-                    <div>{{timeline.tweet.content}}</div>
-                  </v-list-tile-content>
-                </v-list-tile>
-                <v-divider v-if="index + 1 < timeline.length" :key="`divider-${index}`"></v-divider>
-              </template>
-            </v-list>
+          <Timeline v-bind:timelines="timelines" v-on:markFavorite="markFavorite" />
         </v-sheet>
       </v-flex>
 
@@ -45,15 +36,20 @@
 <script>
   import { TIMELINE } from "../graphql/query.js";
   import { CREATE_TWEET } from "../graphql/mutation.js";
+  import Timeline from "../components/Timeline.vue";
 
   export default {
+    components: {Timeline},
     data: () => ({
       valid: false,
       timelines: [],
-      tweet: ""
+      tweet: "",
+      tweetRules: [
+        v => !!v || 'required'
+      ],
     }),
     methods: {
-      postTweet(e){       
+      postTweet(e){
         this.$apollo.mutate({
           mutation: CREATE_TWEET,
           variables: {
@@ -62,7 +58,12 @@
         }).then((data) => {
           this.$apollo.queries.timelines.refetch({
             id: 0
-          })
+          });
+        });
+      },
+      markFavorite(){
+        this.$apollo.queries.timelines.refetch({
+            id: 0
         });
       }
     },
