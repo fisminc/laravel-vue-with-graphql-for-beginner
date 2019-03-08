@@ -21,3 +21,13 @@ export const TIMELINE = gql`
     }
   }
 `;
+
+export const ACCOUNT = gql`
+  query{
+    Account {
+      twitter_id
+      name
+      avatar
+    }
+  }
+`;

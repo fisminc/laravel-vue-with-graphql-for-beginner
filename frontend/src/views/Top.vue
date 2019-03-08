@@ -3,30 +3,28 @@
     <v-container>
       <v-layout row wrap>
         
-      <v-flex mb-2>
-        <v-sheet class="pa-4" elevation=6>
-          <router-link to="/profile">
-            <v-avatar
-              color="grey lighten-4"
-            >
-              <img src="https://avatars1.githubusercontent.com/u/1452819?s=460&v=4" />
-            </v-avatar>
-            profile
-          </router-link>
-          <v-text-field
-            v-model="tweet"
-            :rules="tweetRules"
-            label="tweet"
-            required
-          ></v-text-field>
-          <v-btn color="primary" @click="postTweet">ツイート</v-btn>
-        </v-sheet>
-      </v-flex>
-      <v-flex xs12>
-        <v-sheet class="pa-4" elevation=6>
-          <Timeline v-bind:timelines="timelines" v-on:markFavorite="markFavorite" />
-        </v-sheet>
-      </v-flex>
+        <v-flex mb-2>
+          <v-sheet class="pa-4" elevation=6>
+            <router-link to="/profile">
+              <v-avatar color="grey lighten-4">
+                <img src="https://avatars1.githubusercontent.com/u/1452819?s=460&v=4" />
+              </v-avatar>
+              profile
+            </router-link>
+            <v-text-field
+              v-model="tweet"
+              :rules="tweetRules"
+              label="tweet"
+              required
+            ></v-text-field>
+            <v-btn color="primary" @click="postTweet">ツイート</v-btn>
+          </v-sheet>
+        </v-flex>
+        <v-flex xs12>
+          <v-sheet class="pa-4" elevation=6>
+            <Timeline v-bind:timelines="timelines" v-on:markFavorite="markFavorite" />
+          </v-sheet>
+        </v-flex>
 
       </v-layout>
     </v-container>

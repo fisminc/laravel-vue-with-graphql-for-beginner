@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 // ログイン
 export const LOGIN = gql`
-  mutation($email: String!, $password: String!) {
+  mutation($email: String! $password: String!) {
     Login(
       email: $email
       password: $password
@@ -25,10 +25,10 @@ export const CREATE_TWEET = gql`
 
 export const CREATE_ACCOUNT = gql`
   mutation(
-    $name: String!,
-    $twitter_id: String!,
-    $email: String!,
-    $password: String!,
+    $name: String!
+    $twitter_id: String!
+    $email: String!
+    $password: String!
     $password_confirmation: String!
   ) {
     CreateAccount(
@@ -53,5 +53,17 @@ export const CREATE_ACCOUNT = gql`
 export const MARK_FAVORITE = gql`
   mutation($tweet_id: Int!) {
     MarkFavorite(tweet_id: $tweet_id)
+  }
+`;
+
+export const UPDATE_PROFILE = gql`
+  mutation($name: String! $avatar: String) {
+    UpdateProfile(name: $name avatar: $avatar) {
+      id
+      twitter_id
+      name
+      email
+      avatar
+    }
   }
 `;

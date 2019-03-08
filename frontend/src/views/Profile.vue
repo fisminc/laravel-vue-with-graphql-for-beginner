@@ -1,84 +1,66 @@
 <template>
   <v-form v-model="valid">
-    <v-container>
-      <v-layout>
-
-        <v-flex xs12 md4>
-          <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="E-mail"
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="pass"
-            :rules="passRules"
-            :counter="10"
-            label="password"
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="pass"
-            :rules="passRules"
-            :counter="10"
-            label="password"
-            required
-          ></v-text-field>
-          <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
-            <img :src="imageUrl" height="150" v-if="imageUrl"/>
-            <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
-            <input
-              type="file"
-              style="display: none"
-              ref="image"
-              accept="image/*"
-              @change="onFilePicked"
-            >
-          </v-flex>
-          <v-btn color="primary" @click="login">login</v-btn>
+    <v-container grid-list-md>
+      <v-layout row wrap>
+        <v-flex xs12>
+          <v-subheader>
+            Profile
+          </v-subheader>
         </v-flex>
-
+        <v-flex xs12>
+          <v-sheet class="pa-4" elevation=6>
+              <v-text-field
+                v-model="account.name"
+                label="name"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="account.twitter_id"
+                label="twitter_id"
+                disabled=true
+              ></v-text-field>
+              <v-flex>
+                <img :src="account.avatar" height="150" v-if="account.avatar"/>
+                <img :src="imageUrl" height="150" v-else-if="imageUrl"/>
+                <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
+                <input
+                  type="file"
+                  style="display: none"
+                  ref="image"
+                  accept="image/*"
+                  @change="onFilePicked"
+                >
+              </v-flex>
+              <v-btn color="primary" @click="updateProfile">プロフィールアップデート</v-btn>
+          </v-sheet>
+        </v-flex>
       </v-layout>
     </v-container>
   </v-form>
 </template>
 
+
 <script>
-  import { LOGIN } from "../graphql/mutation.js";
+  import { ACCOUNT } from "../graphql/query.js";
+  import { UPDATE_PROFILE } from "../graphql/mutation.js";
   import store from "../store/index";
 
   export default {
     data: () => ({
-      valid: false,
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid'
-      ],
-      pass: '',
-      passRules: [
-        v => !!v || 'id is required',
-        v => v.length <= 10 || 'Name must be less than 10 characters'
-      ],
-      imageName: '',
-      imageUrl: '',
-      imageFile: ''
+      account: {},
+      imageName: "",
+      imageUrl: ""
     }),
     methods: {
-      login(e){       
-        // ミューテーション
+      updateProfile (){
         this.$apollo.mutate({
-          // Query
-          mutation: LOGIN,
-          // Parameters
+          mutation: UPDATE_PROFILE,
           variables: {
-            email: this.email,
-            password: this.pass
-          },
+            name: this.account.name,
+            avatar: this.account.avatar ? this.account.avatar : this.imageUrl
+          }
         }).then((data) => {
-          const token = localStorage.setItem('vue_token', data.data.Login.access_token);
-          store.commit("logined");
-          this.$router.push("/");
+          this.$apollo.queries.account.refetch();
         });
       },
       pickFile () {
@@ -94,14 +76,21 @@
           const fr = new FileReader ()
           fr.readAsDataURL(files[0])
           fr.addEventListener("load", () => {
-            this.imageUrl = fr.result
-            this.imageFile = files[0] 
+            this.imageUrl = fr.result;
           })
         } else {
-          this.imageName = ""
-          this.imageFile = ""
-          this.imageUrl = ""
+          this.imageName = "";
+          this.imageUrl = "";
         }
+      }
+    },
+    apollo: {
+      account: {  // query2: variablesを入れて、返却データを変更するパターン
+        query: ACCOUNT,
+        loadingKey: 'loading',
+        update (data) {
+          return data.Account
+        },
       }
     }
   }
