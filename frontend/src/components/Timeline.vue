@@ -11,17 +11,20 @@
 
           <v-list-tile-content>
             <div>{{timeline.tweet.content}}</div>
+          </v-list-tile-content>
 
+          <v-list-tile-action>
             <v-btn v-if="!timeline.favorite" :data-tweet-id="timeline.tweet.id" @click="markFavorite" flat icon color="blue-grey lighten-4">
               <v-icon>favorite</v-icon>
             </v-btn>
             <v-btn v-else :data-tweet-id="timeline.tweet.id" @click="unMarkFavorite" flat icon color="pink">
               <v-icon>favorite</v-icon>
             </v-btn>
-
-          </v-list-tile-content>
+          </v-list-tile-action>
         </v-list-tile>
-        <v-divider v-if="index + 1 < timeline.length" :key="`divider-${index}`"></v-divider>
+        <v-divider
+          :key="index"
+        ></v-divider>
       </template>
     </v-list>
 </template>
