@@ -59,9 +59,6 @@
           this.$emit("markFavorite")
         });
       }
-    },
-    mounted(){
-      console.log(this.timelines);
     }
   }
 </script>

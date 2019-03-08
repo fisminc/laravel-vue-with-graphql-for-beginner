@@ -12,11 +12,6 @@
               <v-avatar color="grey lighten-4">
                 <img src="https://avatars1.githubusercontent.com/u/1452819?s=460&v=4" />
               </v-avatar>
-            <router-link to="/profile">
-              <v-btn>
-                profile
-              </v-btn>
-            </router-link>
             <v-text-field
               v-model="tweet"
               :rules="tweetRules"

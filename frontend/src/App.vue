@@ -8,7 +8,9 @@
       <v-spacer></v-spacer>
 
       <router-link to="/"><v-btn　flat>top</v-btn></router-link>
+      <router-link to="/profile"><v-btn　flat>profile</v-btn></router-link>
       <router-link to="/login"><v-btn　flat>login</v-btn></router-link>
+      <router-link to="/signup"><v-btn　flat>signup</v-btn></router-link>
 
     </v-toolbar>
     <v-content>
