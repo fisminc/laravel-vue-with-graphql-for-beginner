@@ -12,10 +12,10 @@
           <v-list-tile-content>
             <div>{{timeline.tweet.content}}</div>
 
-            <v-btn v-if="!timeline.favorite" :data-tweet-id="timeline.id" @click="markFavorite" flat icon color="blue-grey lighten-4">
+            <v-btn v-if="!timeline.favorite" :data-tweet-id="timeline.tweet.id" @click="markFavorite" flat icon color="blue-grey lighten-4">
               <v-icon>favorite</v-icon>
             </v-btn>
-            <v-btn v-else :data-tweet-id="timeline.id" @click="unMarkFavorite" flat icon color="pink">
+            <v-btn v-else :data-tweet-id="timeline.tweet.id" @click="unMarkFavorite" flat icon color="pink">
               <v-icon>favorite</v-icon>
             </v-btn>
 
@@ -29,6 +29,7 @@
  
 <script>
   import { MARK_FAVORITE } from "../graphql/mutation.js";
+  import { UN_MARK_FAVORITE } from "../graphql/mutation.js";
 
   export default {
     props: {
@@ -39,14 +40,21 @@
         this.$apollo.mutate({
           mutation: MARK_FAVORITE,
           variables: {
-            tweet_id: e.currentTarget.getAttribute("data-tweet-id"),
+            tweet_id: parseInt(e.currentTarget.getAttribute("data-tweet-id"), 10),
           },
         }).then((data) => {
           this.$emit("markFavorite")
         });
       },
       unMarkFavorite(){
-
+        this.$apollo.mutate({
+          mutation: UN_MARK_FAVORITE,
+          variables: {
+            tweet_id: parseInt(e.currentTarget.getAttribute("data-tweet-id"), 10),
+          },
+        }).then((data) => {
+          this.$emit("markFavorite")
+        });
       }
     },
     mounted(){

@@ -2,14 +2,20 @@
   <v-form v-model="valid">
     <v-container>
       <v-layout row wrap>
-        
+        <v-flex xs12>
+          <v-subheader>
+            Tweet
+          </v-subheader>
+        </v-flex>
         <v-flex mb-2>
           <v-sheet class="pa-4" elevation=6>
-            <router-link to="/profile">
               <v-avatar color="grey lighten-4">
                 <img src="https://avatars1.githubusercontent.com/u/1452819?s=460&v=4" />
               </v-avatar>
-              profile
+            <router-link to="/profile">
+              <v-btn>
+                profile
+              </v-btn>
             </router-link>
             <v-text-field
               v-model="tweet"
@@ -76,7 +82,7 @@
           }
         },
         update (data) {
-          return data.Timeline
+          return data.Timeline.reverse();
         },
       }
     }

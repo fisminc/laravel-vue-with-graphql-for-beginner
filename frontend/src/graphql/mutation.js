@@ -56,6 +56,12 @@ export const MARK_FAVORITE = gql`
   }
 `;
 
+export const UN_MARK_FAVORITE = gql`
+  mutation($tweet_id: Int!) {
+    UnMarkFavorite(tweet_id: $tweet_id)
+  }
+`;
+
 export const UPDATE_PROFILE = gql`
   mutation($name: String! $avatar: String) {
     UpdateProfile(name: $name avatar: $avatar) {
