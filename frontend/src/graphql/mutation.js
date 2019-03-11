@@ -51,8 +51,8 @@ export const CREATE_ACCOUNT = gql`
 `;
 
 export const MARK_FAVORITE = gql`
-  mutation($tweet_id: Int!) {
-    MarkFavorite(tweet_id: $tweet_id)
+  mutation($tweet_id: Int! $timeline_id: Int!) {
+    MarkFavorite(tweet_id: $tweet_id timeline_id: $timeline_id)
   }
 `;
 

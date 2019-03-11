@@ -77,7 +77,7 @@
           }
         },
         update (data) {
-          return data.Timeline.reverse();
+          return data.Timeline;
         },
       }
     }
