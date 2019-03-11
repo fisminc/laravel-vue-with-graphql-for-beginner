@@ -31,6 +31,6 @@ class TimelineResolver
             ->limit(10)
             ->get();
 
-        return $timelines;
+        return $timelines->sortByDesc('updated_at');
     }
 }
