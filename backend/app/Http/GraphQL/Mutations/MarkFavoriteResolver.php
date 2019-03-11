@@ -33,9 +33,7 @@ class MarkFavoriteResolver
         /** @var Favorite $favorite */
         $favorite = $this->createFavorite($account, $args['tweet_id']);
 
-        Tweet::find($args['tweet_id']);
-
-        $this->addTweetToTimeline($account, $args['tweet_id']);
+        $this->updateTimelineFavoriteId($account, $args['timeline_id'], $favorite->id);
 
         $this->addTweetToFollowersTimeline($account, $args['tweet_id']);
 
@@ -51,12 +49,12 @@ class MarkFavoriteResolver
         ]);
     }
 
-    protected function addTweetToTimeline(Account $account, $tweetId)
+    protected function updateTimelineFavoriteId(Account $account, $timelineId, $favoriteId)
     {
-        return Timeline::create([
-            'account_id' => $account->id,
-            'tweet_id'   => $tweetId,
-        ]);
+        return Timeline::where([
+            'account_id'  => $account->id,
+            'timeline_id' => $timelineId,
+        ])->update(['favorite_id' => $favoriteId]);
     }
 
     protected function addTweetToFollowersTimeline(Account $account, $tweetId)
