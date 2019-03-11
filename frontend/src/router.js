@@ -1,24 +1,51 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import Top from "./views/Top.vue";
+import Login from "./views/Login.vue";
+import Signup from "./views/Signup.vue";
+import Profile from "./views/Profile.vue";
+import store from "./store/index";
 
 Vue.use(Router);
 
-export default new Router({
+const AuthGuard = (to, from, next) => {
+  if (!store.getters.logined) {
+    next({
+      path: "/login"
+    });
+  } else {
+    next();
+  }
+};
+
+const router = new Router({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      name: "top",
+      component: Top,
+      beforeEnter: AuthGuard
     },
     {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
+      path: "/login",
+      name: "login",
+      component: Login
+    },
+    {
+      path: "/signup",
+      name: "signup",
+      component: Signup
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      component: Profile
     }
   ]
 });
+
+// router.beforeEach((to, from, next) => {
+//   console.log(to);
+// });
+
+export default router;
