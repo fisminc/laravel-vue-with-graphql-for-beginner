@@ -9,9 +9,19 @@
         </v-flex>
         <v-flex mb-2>
           <v-sheet class="pa-4" elevation=6>
-              <v-avatar color="grey lighten-4">
-                <img src="https://avatars1.githubusercontent.com/u/1452819?s=460&v=4" />
-              </v-avatar>
+            <v-list-tile
+              avatar
+            >
+              <v-list-tile-avatar>
+                <img :src="'http://localhost:8000/storage/images/' + account.avatar" v-if="account.avatar"/>
+                <v-icon v-else>account_circle</v-icon>
+              </v-list-tile-avatar>
+
+              <v-list-tile-content>
+                <v-list-tile-sub-title v-html="account.twitter_id"></v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+
             <v-text-field
               v-model="tweet"
               :rules="tweetRules"
@@ -23,7 +33,7 @@
         </v-flex>
         <v-flex xs12>
           <v-sheet class="pa-4" elevation=6>
-            <Timeline v-bind:timelines="timelines" v-on:markFavorite="markFavorite" />
+            <Timeline v-bind:timelines="timelines" v-bind:account="account" v-on:markFavorite="markFavorite" />
           </v-sheet>
         </v-flex>
 
@@ -33,7 +43,7 @@
 </template>
 
 <script>
-  import { TIMELINE } from "../graphql/query.js";
+  import { TIMELINE, ACCOUNT } from "../graphql/query.js";
   import { CREATE_TWEET } from "../graphql/mutation.js";
   import Timeline from "../components/Timeline.vue";
 
@@ -42,6 +52,7 @@
     data: () => ({
       valid: false,
       timelines: [],
+      account: {},
       tweet: "",
       tweetRules: [
         v => !!v || 'required'
@@ -78,6 +89,13 @@
         },
         update (data) {
           return data.Timeline;
+        },
+      },
+      account: {  // query2: variablesを入れて、返却データを変更するパターン
+        query: ACCOUNT,
+        loadingKey: 'loading',
+        update (data) {
+          return data.Account
         },
       }
     }

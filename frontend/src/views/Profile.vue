@@ -20,7 +20,7 @@
                 disabled=true
               ></v-text-field>
               <v-flex>
-                <img :src="account.avatar" height="150" v-if="account.avatar"/>
+                <img :src="'http://localhost:8000/storage/images/' + account.avatar" height="150" v-if="account.avatar"/>
                 <img :src="imageUrl" height="150" v-else-if="imageUrl"/>
                 <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
                 <input
