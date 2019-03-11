@@ -52,8 +52,8 @@ class MarkFavoriteResolver
     protected function updateTimelineFavoriteId(Account $account, $timelineId, $favoriteId)
     {
         return Timeline::where([
+            'id' => $timelineId,
             'account_id'  => $account->id,
-            'timeline_id' => $timelineId,
         ])->update(['favorite_id' => $favoriteId]);
     }
 
