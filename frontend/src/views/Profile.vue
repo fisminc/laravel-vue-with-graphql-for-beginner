@@ -57,7 +57,7 @@
           mutation: UPDATE_PROFILE,
           variables: {
             name: this.account.name,
-            avatar: this.account.avatar ? this.account.avatar : this.imageUrl
+            avatar: this.imageUrl ? this.imageUrl : ""
           }
         }).then((data) => {
           this.$apollo.queries.account.refetch();
