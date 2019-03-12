@@ -11,12 +11,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property int $account_id
  * @property string $content
- * @property int|null $retweet_id
  * @property int|null $reply_id
  * @property string $tweeted_at
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Retweet[] $retweets
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tweet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tweet newQuery()
@@ -29,13 +29,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tweet whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tweet whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tweet whereReplyId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tweet whereRetweetId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tweet whereTweetedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Tweet whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Tweet withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Tweet withoutTrashed()
  * @mixin \Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Retweet[] $retweets
  */
 class Tweet extends Model
 {

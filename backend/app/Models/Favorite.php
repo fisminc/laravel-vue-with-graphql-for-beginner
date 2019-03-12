@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $account_id
  * @property int $tweet_id
- * @property string $favorite_at
+ * @property \Illuminate\Support\Carbon $favorite_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Favorite newModelQuery()

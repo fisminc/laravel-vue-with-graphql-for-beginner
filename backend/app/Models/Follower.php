@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $follower_account_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Account $account
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Follower newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Follower newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Follower query()
@@ -21,7 +22,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Follower whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Follower whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property-read \App\Models\Account $account
  */
 class Follower extends Model
 {
