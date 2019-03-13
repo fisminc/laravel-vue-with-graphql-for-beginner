@@ -97,7 +97,7 @@ return [
     */
 
     'passwords' => [
-        'users' => [
+        'accounts' => [
             'provider' => 'accounts',
             'table' => 'password_resets',
             'expire' => 60,
