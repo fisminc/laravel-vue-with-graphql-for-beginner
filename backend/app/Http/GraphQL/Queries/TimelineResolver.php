@@ -24,7 +24,7 @@ class TimelineResolver
         $timelines = Timeline
             ::with([
                 'tweet',
-                'favorite',
+                'favorite.account',
             ])
             ->where('account_id', auth()->user()->id)
             ->where('id', '>', $args['id'])

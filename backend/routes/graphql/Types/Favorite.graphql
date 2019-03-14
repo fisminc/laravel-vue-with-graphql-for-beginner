@@ -3,4 +3,5 @@ type Favorite {
     account_id: Int!
     tweet_id: Int!
     favorite_at: DateTime!
+    account: Account!
 }
