@@ -4,6 +4,7 @@ namespace App\Http\GraphQL\Mutations;
 
 use App\Models\Account;
 use App\Models\Favorite;
+use App\Models\Timeline;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
@@ -26,8 +27,23 @@ class UnMarkFavoriteResolver
         /** @var \App\Models\Account $account */
         $account = auth()->user();
 
+        $this->updateTimelineFavoriteId($account, $args['timeline_id']);
+
         /** @var Favorite $favorite */
         return $this->deleteFavorite($account, $args['tweet_id']);
+    }
+
+    /**
+     * @param Account $account
+     * @param $timelineId
+     * @return bool
+     */
+    protected function updateTimelineFavoriteId(Account $account, $timelineId)
+    {
+        return Timeline::where([
+            'id' => $timelineId,
+            'account_id'  => $account->id,
+        ])->update(['favorite_id' => null]);
     }
 
     /**

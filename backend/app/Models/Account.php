@@ -9,11 +9,6 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 /**
  * App\Models\Account
  *
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account query()
- * @mixin \Eloquent
  * @property int $id
  * @property string $twitter_id
  * @property string $name
@@ -26,6 +21,11 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string|null $signed_up_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Follower[] $followers
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereAvatar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereEmail($value)
@@ -38,7 +38,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereSignedUpAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereTwitterId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereUpdatedAt($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Follower[] $followers
+ * @mixin \Eloquent
  */
 class Account extends Authenticatable implements JWTSubject
 {
