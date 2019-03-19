@@ -4,6 +4,7 @@ import Top from "./views/Top.vue";
 import Login from "./views/Login.vue";
 import Signup from "./views/Signup.vue";
 import Profile from "./views/Profile.vue";
+import User from "./views/User.vue";
 import store from "./store/index";
 
 Vue.use(Router);
@@ -40,6 +41,11 @@ const router = new Router({
       path: "/profile",
       name: "profile",
       component: Profile
+    },
+    {
+      path: "/user",
+      name: "user",
+      component: User
     }
   ]
 });

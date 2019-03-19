@@ -73,3 +73,19 @@ export const UPDATE_PROFILE = gql`
     }
   }
 `;
+
+export const FOLLOW_ACCOUNT = gql`
+  mutation($id: Int!) {
+    FollowAccount(id: $id) {
+      id
+      account_id
+      follow_account_id
+    }
+  }
+`;
+
+export const UN_FOLLOW_ACCOUNT = gql`
+  mutation($id: Int!) {
+    UnFollowAccount(id: $id)
+  }
+`;
