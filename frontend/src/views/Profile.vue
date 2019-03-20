@@ -1,5 +1,5 @@
 <template>
-  <v-form v-model="valid">
+  <v-form v-model="valid" @submit="updateProfile">
     <v-container grid-list-md>
       <v-layout row wrap>
         <v-flex xs12>
@@ -31,7 +31,7 @@
                   @change="onFilePicked"
                 >
               </v-flex>
-              <v-btn color="primary" @click="updateProfile">プロフィールアップデート</v-btn>
+              <v-btn color="primary" type="submit">プロフィールアップデート</v-btn>
           </v-sheet>
         </v-flex>
       </v-layout>

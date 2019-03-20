@@ -1,5 +1,5 @@
 <template>
-  <v-form v-model="valid">
+  <v-form v-model="valid" @submit="createAccount">
     <v-container>
       <v-layout>
 
@@ -37,7 +37,7 @@
             browser-autocomplete="on"
             required
           ></v-text-field>
-          <v-btn color="primary" @click="createAccount">createAccount</v-btn>
+          <v-btn color="primary" type="submit">createAccount</v-btn>
         </v-flex>
 
       </v-layout>

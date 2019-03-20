@@ -1,5 +1,5 @@
 <template>
-  <v-form v-model="valid">
+  <v-form v-model="valid" @submit="postTweet">
     <v-container>
       <v-layout row wrap>
         <v-flex xs12>
@@ -28,7 +28,7 @@
               label="tweet"
               required
             ></v-text-field>
-            <v-btn color="primary" @click="postTweet">ツイート</v-btn>
+            <v-btn type="submit" color="primary">ツイート</v-btn>
           </v-sheet>
         </v-flex>
         <v-flex xs12>

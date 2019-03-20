@@ -6,12 +6,12 @@
           avatar
         >
           <v-list-tile-avatar>
-            <img :src="'http://localhost:8000/storage/images/' + account.avatar" v-if="account.avatar"/>
+            <img :src="'http://localhost:8000/storage/images/' + timeline.tweet.account.avatar" v-if="timeline.tweet.account.avatar"/>
             <v-icon v-else>account_circle</v-icon>
           </v-list-tile-avatar>
 
           <v-list-tile-content>
-            <v-list-tile-sub-title v-html="account.twitter_id"></v-list-tile-sub-title>
+            <v-list-tile-sub-title v-html="timeline.tweet.account.twitter_id"></v-list-tile-sub-title>
             <v-list-tile-title v-html="timeline.tweet.content"></v-list-tile-title>
           </v-list-tile-content>
 

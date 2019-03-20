@@ -7,12 +7,9 @@ export const TIMELINE = gql`
       tweet {
         id
         content
-        myRetweet {
-          tweet {
-            id
-            account_id
-            content
-          }
+        account {
+          twitter_id
+          avatar
         }
       }
       favorite {
