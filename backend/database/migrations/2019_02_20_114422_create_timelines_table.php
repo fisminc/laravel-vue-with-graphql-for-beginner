@@ -18,6 +18,8 @@ class CreateTimelinesTable extends Migration
             $table->unsignedInteger('account_id');
             $table->unsignedInteger('tweet_id');
             $table->unsignedInteger('favorite_id')->nullable();
+            $table->unsignedInteger('original_favorite_id')->nullable();
+            $table->unsignedInteger('original_retweet_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
