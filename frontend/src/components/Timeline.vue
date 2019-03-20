@@ -16,10 +16,10 @@
           </v-list-tile-content>
 
           <v-list-tile-action>
-            <v-btn v-if="!timeline.favorite" :data-tweet-id="timeline.tweet.id" :data-timeline-id="timeline.id" @click="markFavorite" flat icon color="blue-grey lighten-4">
+            <v-btn v-if="!timeline.favorite" @click="()=>markFavorite(timeline.tweet.id, timeline.id)" flat icon color="blue-grey lighten-4">
               <v-icon>favorite</v-icon>
             </v-btn>
-            <v-btn v-else :data-tweet-id="timeline.tweet.id" :data-timeline-id="timeline.id" @click="unMarkFavorite" flat icon color="pink">
+            <v-btn v-else @click="()=>unMarkFavorite(timeline.tweet.id, timeline.id)" flat icon color="pink">
               <v-icon>favorite</v-icon>
             </v-btn>
           </v-list-tile-action>
@@ -46,23 +46,23 @@
       }
     },
     methods: {
-      markFavorite(e){
+      markFavorite(tweetId, timelineId){
         this.$apollo.mutate({
           mutation: MARK_FAVORITE,
           variables: {
-            tweet_id: parseInt(e.currentTarget.getAttribute("data-tweet-id"), 10),
-            timeline_id: parseInt(e.currentTarget.getAttribute("data-timeline-id"), 10)
+            tweet_id: parseInt(tweetId, 10),
+            timeline_id: parseInt(timelineId, 10)
           },
         }).then((data) => {
           this.$emit("markFavorite")
         });
       },
-      unMarkFavorite(e){
+      unMarkFavorite(tweetId, timelineId){
         this.$apollo.mutate({
           mutation: UN_MARK_FAVORITE,
           variables: {
-            tweet_id: parseInt(e.currentTarget.getAttribute("data-tweet-id"), 10),
-            timeline_id: parseInt(e.currentTarget.getAttribute("data-timeline-id"), 10)
+            tweet_id: parseInt(tweetId, 10),
+            timeline_id: parseInt(timelineId, 10)
           },
         }).then((data) => {
           this.$emit("markFavorite")
