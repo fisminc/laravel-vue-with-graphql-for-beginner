@@ -5,4 +5,5 @@ type Tweet {
     reply_id: Int
     tweeted_at: DateTime!
     myRetweet: Retweet
+    account: Account!
 }

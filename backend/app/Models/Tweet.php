@@ -56,4 +56,9 @@ class Tweet extends Model
         return $this->hasOne(Retweet::class)
                     ->where('account_id', auth()->user()->id);
     }
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }

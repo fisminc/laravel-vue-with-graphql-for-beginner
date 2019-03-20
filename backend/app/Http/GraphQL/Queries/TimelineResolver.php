@@ -21,16 +21,21 @@ class TimelineResolver
      */
     public function resolve($rootValue, array $args, GraphQLContext $context = null, ResolveInfo $resolveInfo)
     {
-        $timelines = Timeline
+        $query = Timeline
             ::with([
                 'tweet',
                 'favorite.account',
             ])
-            ->where('account_id', auth()->user()->id)
-            ->where('id', '>', $args['id'])
+            ->where('account_id', auth()->user()->id);
+
+        if ($args['id']) {
+            $query->where('id', '<', $args['id']);
+        }
+
+        $timelines = $query->orderByDesc('id')
             ->limit(10)
             ->get();
 
-        return $timelines->sortByDesc('updated_at');
+        return $timelines;
     }
 }
