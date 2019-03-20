@@ -11,6 +11,7 @@
       <router-link to="/profile"><v-btn　flat>profile</v-btn></router-link>
       <router-link to="/login"><v-btn　flat>login</v-btn></router-link>
       <router-link to="/signup"><v-btn　flat>signup</v-btn></router-link>
+      <router-link to="/user"><v-btn　flat>user</v-btn></router-link>
 
     </v-toolbar>
     <v-content>

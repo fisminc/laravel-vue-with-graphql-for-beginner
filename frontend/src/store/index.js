@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export const errorPlugin = (store) => {
   store.subscribe((mutation, state) => {
-    console.log(mutation);
+    console.log(mutation, state);
   })
 }
 

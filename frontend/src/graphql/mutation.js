@@ -57,8 +57,8 @@ export const MARK_FAVORITE = gql`
 `;
 
 export const UN_MARK_FAVORITE = gql`
-  mutation($tweet_id: Int!) {
-    UnMarkFavorite(tweet_id: $tweet_id)
+  mutation($tweet_id: Int! $timeline_id: Int!) {
+    UnMarkFavorite(tweet_id: $tweet_id timeline_id: $timeline_id)
   }
 `;
 
@@ -71,5 +71,21 @@ export const UPDATE_PROFILE = gql`
       email
       avatar
     }
+  }
+`;
+
+export const FOLLOW_ACCOUNT = gql`
+  mutation($id: Int!) {
+    FollowAccount(id: $id) {
+      id
+      account_id
+      follow_account_id
+    }
+  }
+`;
+
+export const UN_FOLLOW_ACCOUNT = gql`
+  mutation($id: Int!) {
+    UnFollowAccount(id: $id)
   }
 `;

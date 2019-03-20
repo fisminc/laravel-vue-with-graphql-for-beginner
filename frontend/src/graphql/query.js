@@ -31,3 +31,16 @@ export const ACCOUNT = gql`
     }
   }
 `;
+
+export const ACCOUNTS = gql`
+  query($count: Int!,$page: Int!){
+    Accounts(count: $count, page: $page) {
+      data {
+        id
+        twitter_id
+        avatar
+        is_following_account
+      }
+    }
+  }
+`;
