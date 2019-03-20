@@ -5,4 +5,5 @@ type Timeline {
     favorite_id: Int
     tweet: Tweet
     originalFavorite: Favorite
+    favorite: Favorite
 }

@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const TIMELINE = gql`
-  query($id: Int!){
+  query($id: Int!) {
     Timeline(id: $id) {
       id
       tweet {
@@ -10,6 +10,12 @@ export const TIMELINE = gql`
         account {
           twitter_id
           avatar
+        }
+      }
+      originalFavorite {
+        account {
+          twitter_id
+          name
         }
       }
       favorite {
