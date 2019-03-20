@@ -33,6 +33,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Timeline withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Timeline withoutTrashed()
  * @mixin \Eloquent
+ * @property int|null $original_favorite_id
+ * @property int|null $original_retweet_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Timeline whereOriginalFavoriteId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Timeline whereOriginalRetweetId($value)
  */
 class Timeline extends Model
 {
@@ -49,5 +53,10 @@ class Timeline extends Model
     public function favorite()
     {
         return $this->belongsTo(Favorite::class);
+    }
+
+    public function originalFavorite()
+    {
+        return $this->belongsTo(Favorite::class, 'original_favorite_id');
     }
 }

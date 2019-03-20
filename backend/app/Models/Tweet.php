@@ -34,6 +34,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Tweet withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Tweet withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \App\Models\Account $account
  */
 class Tweet extends Model
 {

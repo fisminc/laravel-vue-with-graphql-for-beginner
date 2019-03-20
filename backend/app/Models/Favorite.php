@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Favorite whereTweetId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Favorite whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Account $account
  */
 class Favorite extends Model
 {
