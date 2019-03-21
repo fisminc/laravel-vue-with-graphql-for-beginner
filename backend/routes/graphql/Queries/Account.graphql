@@ -1,3 +1,3 @@
 extend type Query {
-    Account: Account @field(resolver: "AccountResolver@resolve")
+    Account: Account @auth
 }
