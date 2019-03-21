@@ -40,10 +40,10 @@ class UnMarkFavoriteResolver
      */
     protected function updateTimelineFavoriteId(Account $account, $timelineId)
     {
-        $timeline = Timeline::find($timelineId);
-        $timeline->timestamps = false;
-        $timeline->favorite_id = null;
-        return $timeline->save();
+        return Timeline::where([
+            'id' => $timelineId,
+            'account_id'  => $account->id,
+        ])->update(['favorite_id' => null]);
     }
 
     /**

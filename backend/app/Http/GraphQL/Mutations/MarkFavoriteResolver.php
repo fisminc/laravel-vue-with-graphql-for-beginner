@@ -51,12 +51,10 @@ class MarkFavoriteResolver
 
     protected function updateTimelineFavoriteId(Account $account, $timelineId, $favoriteId)
     {
-        $timeline = Timeline::find($timelineId);
-        $timeline->timestamps = false;
-        $timeline->favorite_id = $favoriteId;
-        $timeline->save();
-
-        return $timeline;
+        return Timeline::where([
+            'id' => $timelineId,
+            'account_id'  => $account->id,
+        ])->update(['favorite_id' => $favoriteId]);
     }
 
     protected function addTweetToFollowersTimeline(Account $account, $tweetId, $favoriteId)
