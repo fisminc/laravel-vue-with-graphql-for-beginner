@@ -6,7 +6,7 @@ use App\Models\Account;
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
-class UpdateProfileResolver
+class UpdateAccountResolver
 {
     /**
      * Return a value for the field.
@@ -24,16 +24,16 @@ class UpdateProfileResolver
         /** @var \App\Models\Account $account */
         $account = auth()->user();
 
-        $updatedAccount = $this->updateProfile($account, $args);
+        $updatedAccount = $this->updateAccount($account, $args);
 
         return $updatedAccount;
     }
 
-    protected function updateProfile(Account $account, array $args)
+    protected function updateAccount(Account $account, array $args)
     {
         $account->name = $args['name'] ?? $account->name;
 
-        if ($args['avatar']) {
+        if (isset($args['avatar'])) {
             $exploded = explode(';base64,', $args['avatar']);
             $imageType = explode('image/', $exploded[0])[1];
             $imageName = str_random() . ".{$imageType}";
