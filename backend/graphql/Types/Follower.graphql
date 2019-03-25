@@ -1,0 +1,5 @@
+type Follower {
+    id: ID!
+    account_id: Int!
+    follower_account_id: Int!
+}

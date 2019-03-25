@@ -1,0 +1,7 @@
+type Timeline {
+    id: ID!
+    account_id: Int!
+    tweet_id: Int!
+    favorite_id: Int
+    tweet: Tweet
+}

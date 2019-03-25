@@ -63,4 +63,22 @@ class Account extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function followers()
+    {
+        return $this->hasMany(Follower::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function follower()
+    {
+        return $this->hasOne(Follower::class)
+                    ->where('follower_account_id', auth()->user()->id);
+    }
+
 }

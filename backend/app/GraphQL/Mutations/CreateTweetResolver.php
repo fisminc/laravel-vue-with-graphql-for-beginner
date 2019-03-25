@@ -32,6 +32,8 @@ class CreateTweetResolver
 
         $this->addTweetToTimeline($account, $tweet); // ②
 
+        $this->addTweetToFollowersTimeline($account, $tweet);
+
         return $tweet;
     }
 
@@ -61,6 +63,20 @@ class CreateTweetResolver
             'account_id' => $account->id,
             'tweet_id'   => $tweet->id,
         ]);
+    }
+
+    /**
+     * @param \App\Models\Account $account
+     * @param \App\Models\Tweet $tweet
+     */
+    protected function addTweetToFollowersTimeline(Account $account, Tweet $tweet)
+    {
+        foreach ($account->followers as $follower) {
+            Timeline::create([
+                'account_id' => $follower->follower_account_id,
+                'tweet_id'   => $tweet->id,
+            ]);
+        }
     }
 
 }

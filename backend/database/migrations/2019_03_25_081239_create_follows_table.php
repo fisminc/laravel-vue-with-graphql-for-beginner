@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTimelinesTable extends Migration
+class CreateFollowsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateTimelinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('timelines', function (Blueprint $table) {
+        Schema::create('follows', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('account_id');
-            $table->unsignedInteger('tweet_id');
-            $table->unsignedInteger('favorite_id')->nullable();
-            $table->unsignedInteger('original_favorite_id')->nullable();
-            $table->softDeletes();
+            $table->unsignedInteger('follow_account_id');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateTimelinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('timelines');
+        Schema::dropIfExists('follows');
     }
 }
