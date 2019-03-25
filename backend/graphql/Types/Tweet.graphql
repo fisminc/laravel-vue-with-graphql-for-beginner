@@ -1,0 +1,9 @@
+
+type Tweet {
+    id: ID!
+    account_id: Int!
+    content: String!
+    reply_id: Int
+    tweeted_at: DateTime!
+    account: Account!
+}
