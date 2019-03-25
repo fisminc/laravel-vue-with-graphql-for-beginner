@@ -1,0 +1,5 @@
+extend type Mutation @group(middleware: ["auth:api"]) {
+    UnFollowAccount( # ①
+        id: Int! @rules(apply: ["required", "integer", "exists:accounts,id"]) # ②
+    ): Boolean @field(resolver: "UnFollowAccountResolver@resolve") # ③
+}
