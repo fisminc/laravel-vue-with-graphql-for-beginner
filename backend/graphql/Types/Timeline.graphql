@@ -4,4 +4,6 @@ type Timeline {
     tweet_id: Int!
     favorite_id: Int
     tweet: Tweet
+    favorite: Favorite
+    originalFavorite: Favorite
 }

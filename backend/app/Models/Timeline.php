@@ -15,4 +15,14 @@ class Timeline extends Model
     {
         return $this->belongsTo(Tweet::class);
     }
+
+    public function favorite()
+    {
+        return $this->belongsTo(Favorite::class);
+    }
+    
+    public function originalFavorite()
+    {
+        return $this->belongsTo(Favorite::class, 'original_favorite_id');
+    }
 }
