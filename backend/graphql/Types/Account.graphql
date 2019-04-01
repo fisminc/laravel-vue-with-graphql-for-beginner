@@ -6,4 +6,5 @@ type Account {
     avatar: String
     follower: Follower
     followers: [Follower]
+    is_following_account: Boolean
 }
