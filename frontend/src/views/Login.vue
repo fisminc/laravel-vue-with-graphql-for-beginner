@@ -1,5 +1,5 @@
 <template>
-  <v-form v-model="valid">
+  <v-form v-model="valid" @submit="login">
     <v-container>
       <v-layout>
 
@@ -17,7 +17,7 @@
             label="password"
             required
           ></v-text-field>
-          <v-btn color="primary" @click="login">login</v-btn>
+          <v-btn color="primary" type="submit">login</v-btn>
           <router-link to="/signup"><v-btn　flat>signup</v-btn></router-link>
         </v-flex>
 
