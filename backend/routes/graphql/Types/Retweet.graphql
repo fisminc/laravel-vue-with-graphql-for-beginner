@@ -1,0 +1,9 @@
+type Retweet {
+    id: ID!
+    account_id: Int!
+    tweet_id: Int!
+    original_tweet_id: Int!
+    retweeted_at: DateTime!
+    tweet: Tweet
+    originalTweet: Tweet
+}
