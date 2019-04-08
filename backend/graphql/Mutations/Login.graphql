@@ -1,0 +1,6 @@
+extend type Mutation {
+    Login(
+        email: String @rules(apply: ["required", "email"])
+        password: String @rules(apply: ["required", "max:16"])
+    ): Token @field(resolver: "LoginResolver@resolve") # ①
+}

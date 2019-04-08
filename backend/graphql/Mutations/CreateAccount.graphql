@@ -1,0 +1,9 @@
+type Mutation {
+    CreateAccount(
+        name: String @rules(apply: ["required", "string", "max:40"])
+        twitter_id: String @rules(apply: ["required", "string", "max:40"])
+        email: String @rules(apply: ["required", "email", "max:255", "unique:accounts,email"])
+        password: String @rules(apply: ["required", "string", "min:6", "confirmed"])
+        password_confirmation: String @rules(apply: ["required", "string"])
+    ): CreatedAccount @field(resolver: "RegisterAccountResolver@resolve")
+}

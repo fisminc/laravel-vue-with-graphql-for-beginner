@@ -8,40 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-/**
- * App\Models\Account
- *
- * @property int $id
- * @property string $twitter_id
- * @property string $name
- * @property string $email
- * @property string|null $avatar
- * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property string $password
- * @property string|null $remember_token
- * @property string|null $logged_in_at
- * @property string|null $signed_up_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Follower[] $followers
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereAvatar($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereLoggedInAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereSignedUpAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereTwitterId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Account whereUpdatedAt($value)
- * @mixin \Eloquent
- */
 class Account extends Authenticatable implements JWTSubject
 {
 
@@ -78,13 +44,6 @@ class Account extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
-
-    /**
-     * @var array
-     */
-    protected $appends = [
-        'is_following_account',
     ];
 
     /**
@@ -143,7 +102,6 @@ class Account extends Authenticatable implements JWTSubject
     {
         $accounts = $this->with('follower')
                          ->where('id', '<>', auth()->user()->id);
-
         return $accounts;
     }
 }

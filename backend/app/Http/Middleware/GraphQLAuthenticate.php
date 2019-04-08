@@ -2,15 +2,14 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Auth\Middleware\Authenticate;
 
-class GraphQLAuthenticate extends Middleware
+class GraphQLAuthenticate extends Authenticate
 {
-
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return string
      */
     protected function redirectTo($request)
@@ -19,4 +18,5 @@ class GraphQLAuthenticate extends Middleware
             return false;
         }
     }
+
 }

@@ -1,0 +1,3 @@
+extend type Query {
+    Accounts: [Account!]! @paginate(builder: "App\\Models\\Account@accountList")
+}

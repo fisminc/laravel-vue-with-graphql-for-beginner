@@ -1,5 +1,0 @@
-extend type Mutation @group(middleware: ["auth:api"]) {
-    FollowAccount(
-        id: Int! @rules(apply: ["required", "integer"])
-    ): Follow @field(resolver: "FollowAccountResolver@resolve")
-}

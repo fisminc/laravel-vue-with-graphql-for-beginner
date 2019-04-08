@@ -1,6 +1,0 @@
-extend type Mutation @group(middleware: ["auth:api"]) {
-    CreateRetweet(
-        tweet_id: Int @rules(apply: ["required", "exists:tweets,id"])
-        content: String @rules(apply: ["string", "max:140"])
-    ): Retweet @field(resolver: "CreateRetweetResolver@resolve")
-}

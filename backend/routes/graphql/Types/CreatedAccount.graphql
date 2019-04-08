@@ -1,4 +1,0 @@
-type CreatedAccount {
-    account: Account
-    token: Token
-}

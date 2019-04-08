@@ -1,0 +1,5 @@
+extend type Mutation @group(middleware: ["auth:api"]) { # ①
+    CreateTweet(
+        content: String @rules(apply: ["required", "string", "max:140"])
+    ): Tweet @field(resolver: "CreateTweetResolver@resolve") # ②
+}

@@ -1,0 +1,10 @@
+type Account {
+    id: ID
+    twitter_id: String
+    name: String
+    email: String
+    avatar: String
+    follower: Follower
+    followers: [Follower]
+    is_following_account: Boolean
+}

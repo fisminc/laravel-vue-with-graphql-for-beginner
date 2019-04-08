@@ -1,0 +1,6 @@
+extend type Mutation @group(middleware: ["auth:api"]) {
+    MarkFavorite( # ①
+        tweet_id: Int @rules(apply: ["required", "exists:tweets,id"])
+        timeline_id: Int @rules(apply: ["required", "exists:timelines,id"])
+    ): Boolean @field(resolver: "MarkFavoriteResolver@resolve") # ②
+}
