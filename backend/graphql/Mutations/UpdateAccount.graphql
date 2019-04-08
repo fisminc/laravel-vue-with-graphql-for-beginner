@@ -1,0 +1,6 @@
+extend type Mutation @group(middleware: ["auth:api"]) {
+    UpdateAccount( # ①
+        name: String @rules(apply: ["required", "string", "max:40"])
+        avatar: String # ②
+    ): Account @field(resolver: "UpdateProfileResolver@resolve")
+}
